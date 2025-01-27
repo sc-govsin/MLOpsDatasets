@@ -1,0 +1,10 @@
+
+storage:
+  type: oci
+  bucket: ScryDatasets
+
+mongodb:
+  database: llm_test_db
+  uri: ""
+  pem: "mongo.pem"
+  ca: "rootCA.crt"
