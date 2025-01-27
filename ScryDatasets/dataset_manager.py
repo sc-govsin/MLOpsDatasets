@@ -195,6 +195,19 @@ class DatasetManager:
             self.logger.error(f"Error listing datasets: {str(e)}")
             raise
 
+    def list_datasets_metadata(self) -> List[dict]:
+        """
+        List all available datasets and their metadata in the workspace
+        
+        Returns:
+            List of dictionaries containing dataset metadata
+        """
+        try:
+            return list(self.metadata_collection.find())
+        except Exception as e:
+            self.logger.error(f"Error listing datasets metadata: {str(e)}")
+            raise
+
     def delete(self, dataset_name: str) -> bool:
         """
         Delete a dataset
