@@ -1,5 +1,4 @@
 # ScryDatasets
-
 ScryDatasets is a Python library for managing datasets. It provides a simple interface for uploading, downloading, listing, and deleting datasets.
 
 ## Installation
@@ -11,6 +10,7 @@ git clone <repository-url>
 cd scry_dataset
 pip install -r requirements.txt
 ```
+
 ## Configuration
 
 ScryDatasets can be configured using a YAML file. The library will look for the configuration file in the following locations, in order:
@@ -35,49 +35,39 @@ mongodb:
     ca: "/rootCA.crt"
 ```
 
-### [requirements.txt](file:///c%3A/Users/govind_singh/Documents/scry_dataset/requirements.txt)
-
-```plaintext
-pandas
-pyyaml
-```
-
 ## Example Usage
 
 ```python
 import pandas as pd
-from ScryDatasets import Dataset
-from ScryDatasets import DatasetManager
+from ScryDatasets.dataset_manager import DatasetManager
 
-# Create a DataFrame
-data = {'column1': [1, 2, 3], 'column2': [4, 5, 6]}
+# Create a sample DataFrame
+data = {
+    'column1': [1, 2, 3],
+    'column2': ['a', 'b', 'c']
+}
 df = pd.DataFrame(data)
 
-# Create a Dataset
-dataset = Dataset(df, name='example_dataset', description='An example dataset', tags=['example', 'test'])
+# Save the dataset to a CSV file
+csv_path = 'sample_dataset.csv'
+df.to_csv(csv_path, index=False)
 
 # Initialize DatasetManager
-manager = DatasetManager(workspace='my_workspace')
+manager = DatasetManager()
 
 # Upload the dataset
-info = manager.upload(dataset)
-print(info)
-```
-
-# Download the dataset
-```python
-downloaded_dataset = manager.download('example_dataset')
-print(downloaded_dataset.df)
-```
+dataset_info = manager.upload(csv_path, name='sample_dataset', description='A sample dataset', tags=['example', 'test'])
 
 # List all datasets
-```python
 datasets = manager.list_datasets()
-for dataset_info in datasets:
-    print(dataset_info)
-```
-# Delete a dataset
-```python
-success = manager.delete('example_dataset')
-print(success)
+for ds in datasets:
+    print(ds)
+
+# Download the dataset
+df = manager.download('sample_dataset')
+if df is not None:
+    print(df.head())
+
+# Delete the dataset
+manager.delete('sample_dataset')
 ```

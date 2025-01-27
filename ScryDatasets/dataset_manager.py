@@ -6,8 +6,10 @@ from pathlib import Path
 import json
 import yaml
 import shutil
+import os
 from pymongo import MongoClient
 import oci
+import pandas as pd
 from .dataset_info import DatasetInfo
 
 class DatasetManager:
@@ -152,19 +154,27 @@ class DatasetManager:
         """
         try:
             metadata = self.metadata_collection.find_one({'name': dataset_name})
+            # Check if dataset exists
+            if metadata is None or len(metadata) == 0:
+                print(f"Dataset '{dataset_name}' not found")
+                return None
             if not metadata:
                 raise ValueError(f"Dataset '{dataset_name}' not found")
 
             if output_path is None:
-                output_path = Path.cwd() / metadata['filename']
+                output_path = Path.home() / '.datasetmanager' / 'downloads' / metadata['filename']
             else:
                 output_path = Path(output_path)
                 if output_path.is_dir():
                     output_path = output_path / metadata['filename']
 
             obj = self.oci_client.get_object(self.oci_client.get_namespace().data,self.bucket_name, metadata['filename'])
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'wb') as f:
                 f.write(obj.data.content)
+            # return the pandas dataframe
+            return pd.read_csv(output_path)
+
         except Exception as e:
             self.logger.error(f"Error downloading dataset: {str(e)}")
             raise
@@ -200,7 +210,7 @@ class DatasetManager:
             if not metadata:
                 raise ValueError(f"Dataset '{dataset_name}' not found")
 
-            self.oci_client.delete_object(self.bucket_name, metadata['filename'])
+            self.oci_client.delete_object(self.oci_client.get_namespace().data,self.bucket_name, metadata['filename'])
             self.metadata_collection.delete_one({'name': dataset_name})
 
             return True
