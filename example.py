@@ -10,7 +10,7 @@ df = pd.DataFrame(data)
 
 # Save the dataset to a CSV file
 csv_path = 'sample_dataset.csv'
-# df.to_csv(csv_path, index=False)
+df.to_csv(csv_path, index=False)
 
 # Initialize DatasetManager
 manager = DatasetManager()
@@ -24,7 +24,8 @@ for ds in datasets:
     print(ds)
 
 # Download the dataset
-manager.download('sample_dataset', output_path='downloaded_sample_dataset.csv')
-
+df = manager.download('sample_dataset')
+if df is not None:
+    print(df.head())
 # Delete the dataset
-# manager.delete('sample_dataset')
+manager.delete('sample_dataset')
