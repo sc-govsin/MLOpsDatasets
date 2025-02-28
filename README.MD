@@ -1,5 +1,6 @@
 # ScryDatasets
-ScryDatasets is a Python library for managing datasets. It provides a simple interface for uploading, downloading, listing, and deleting datasets.
+## Overview
+`ScryDatasets` is a Python library that allows users to easily manage datasets created on the IoT-Sense platform. Users can download datasets they have created, list available datasets, and delete user-uploaded files.
 
 ## Installation
 
@@ -10,7 +11,10 @@ git clone <repository-url>
 cd scry_dataset
 pip install -r requirements.txt
 ```
-
+or 
+```
+pip install git+https://github.com/sc-govsin/ScryDatasets.git
+```
 ## Configuration
 
 ScryDatasets can be configured using a YAML file. The library will look for the configuration file in the following locations, in order:
@@ -33,14 +37,38 @@ mongodb:
     uri: ""
     pem: "/mongo.pem"
     ca: "/rootCA.crt"
+oci:
+  user: 
+  fingerprint: 
+  key_file: key.pem
+  tenancy: 
+  region: 
 ```
 
 ## Example Usage
 
+### Downloading Datasets Created on IoT-Sense Platform
 ```python
 import pandas as pd
 from ScryDatasets.dataset_manager import DatasetManager
 
+# Initialize DatasetManager
+manager = DatasetManager()
+
+# Download the dataset created from the IoT-platform
+# Replace 'Dataset_ABC_28-02-2025T10_55_31' with the actual dataset name
+
+df = manager.download('Dataset_ABC_28-02-2025T10_55_31')
+if df is not None:
+    print(df.head())
+else:
+    print("Dataset not found or could not be downloaded.")
+```
+
+### Additional Features
+
+#### Uploading a Dataset (Deprecated)
+```python
 # Create a sample DataFrame
 data = {
     'column1': [1, 2, 3],
@@ -52,22 +80,30 @@ df = pd.DataFrame(data)
 csv_path = 'sample_dataset.csv'
 df.to_csv(csv_path, index=False)
 
-# Initialize DatasetManager
-manager = DatasetManager()
-
 # Upload the dataset
-dataset_info = manager.upload(csv_path, name='sample_dataset', description='A sample dataset', tags=['example', 'test'])
+manager = DatasetManager()
+dataset_info = manager.upload(csv_path, name='sample_dataset', description='Sample dataset', tags=['sample'])
+```
 
-# List all datasets
+#### Listing All Datasets
+```python
 datasets = manager.list_datasets()
 for ds in datasets:
     print(ds)
+```
 
-# Download the dataset
-df = manager.download('sample_dataset')
-if df is not None:
-    print(df.head())
+#### Downloading User-Uploaded Datasets (Deprecated)
+```python
+df = manager.download_user_uploaded_data('sample_dataset')
+```
 
-# Delete the dataset
+#### Deleting a Dataset
+```python
+# Only user-uploaded datasets can be deleted
 manager.delete('sample_dataset')
 ```
+
+## Notes
+- **Dataset downloads from the IoT-Sense platform**: Ensure you use the correct dataset name.
+- **Deprecation Notice**: The `upload()` and `download_user_uploaded_data()` methods are deprecated.
+- **Deletion**: You can only delete datasets that you have uploaded.
