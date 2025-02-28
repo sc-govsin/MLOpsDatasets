@@ -184,7 +184,7 @@ class DatasetManager:
                 raise ValueError(f"Dataset '{dataset_name}' not found")
 
             if output_path is None:
-                output_path = Path.home() / '.datasetmanager' / 'downloads' / metadata['filename']
+                 output_path = Path('/tmp') / '.datasetmanager' / 'downloads' / metadata['filename']
             else:
                 output_path = Path(output_path)
                 if output_path.is_dir():
@@ -217,7 +217,7 @@ class DatasetManager:
         try:
             obj = self.oci_client.get_object(self.oci_client.get_namespace().data,self.bucket_name, "data/"+dataset_name)
             if output_path is None:
-                output_path = Path.home() / '.datasetmanager' / 'downloads' / dataset_name
+                output_path = Path('/tmp') / '.datasetmanager' / 'downloads' / dataset_name
             else:
                 output_path = Path(output_path)
                 if output_path.is_dir():

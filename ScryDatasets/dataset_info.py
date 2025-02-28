@@ -6,7 +6,7 @@ from typing import Optional, List
 @dataclass
 class DatasetInfo:
     """Data class for dataset information"""
-    _id: str
+    _id: Optional[str]
     name: str
     createdOn: datetime
     description: Optional[str]
