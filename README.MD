@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 or 
 ```
-pip install git+https://github.com/sc-govsin/ScryDatasets.git@v1.0.1
+pip install git+https://github.com/sc-govsin/ScryDatasets.git@v1.0.3
 ```
 ## Configuration
 
