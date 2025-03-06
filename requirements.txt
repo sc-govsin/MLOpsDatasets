@@ -2,6 +2,5 @@ PyYAML==6.0.1
 pyOpenSSL==23.3.0
 pymongo==3.12.0
 oci==2.115.1
-oci-cli==3.36.1
 pandas==2.2.3
 tqdm==4.67.1
