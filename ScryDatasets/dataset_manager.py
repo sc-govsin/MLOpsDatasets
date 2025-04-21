@@ -51,6 +51,13 @@ class DatasetManager:
                 'mongodb': {
                     'uri': 'mongodb://localhost:27017/',
                     'database': 'dataset_manager'
+                },
+                'oci':{
+                    'user': 'your_oci_user_ocid',
+                    'fingerprint': 'your_oci_fingerprint',
+                    'key_file': 'path_to_your_oci_private_key',
+                    'tenancy': 'your_oci_tenancy_ocid',
+                    'region': 'me-jeddah-1'
                 }
             }
             with open(default_config_path, 'w') as f:
