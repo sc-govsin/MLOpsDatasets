@@ -8,3 +8,10 @@ mongodb:
   uri: ""
   pem: "mongo.pem"
   ca: "rootCA.crt"
+
+oci:
+  user: ''
+  fingerprint: ''
+  key_file: ''
+  tenancy: ''
+  region: ''
