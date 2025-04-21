@@ -50,7 +50,9 @@ class DatasetManager:
                 },
                 'mongodb': {
                     'uri': 'mongodb://localhost:27017/',
-                    'database': 'dataset_manager'
+                    'database': 'dataset_manager',
+                    'pem': 'path_to_your_mongodb_pem_file',
+                    'ca': 'path_to_your_mongodb_ca_file'
                 },
                 'oci':{
                     'user': 'your_oci_user_ocid',
