@@ -1,10 +1,10 @@
-# ScryDatasets
+# MLOpsDatasets
 ## Overview
-`ScryDatasets` is a Python library that allows users to easily manage datasets created on the IoT-Sense platform. Users can download datasets they have created, list available datasets, and delete user-uploaded files.
+`MLOpsDatasets` is a Python library that allows users to easily manage datasets created on the IoT-Sense platform. Users can download datasets they have created, list available datasets, and delete user-uploaded files.
 
 ## Installation
 
-To install ScryDatasets, clone the repository and install the dependencies:
+To install MLOpsDatasets, clone the repository and install the dependencies:
 
 ```bash
 git clone <repository-url>
@@ -13,11 +13,11 @@ pip install -r requirements.txt
 ```
 or 
 ```
-pip install git+https://github.com/sc-govsin/ScryDatasets.git@v1.0.3
+pip install git+https://github.com/sc-govsin/MLOpsDatasets.git@v1.0.3
 ```
 ## Configuration
 
-ScryDatasets can be configured using a YAML file. The library will look for the configuration file in the following locations, in order:
+MLOpsDatasets can be configured using a YAML file. The library will look for the configuration file in the following locations, in order:
 
 1. `~/.datasetmanager/config.yaml` (User's home directory)
 2. `/etc/datasetmanager/config.yaml` (System-wide configuration)
@@ -30,7 +30,7 @@ You can specify settings such as the default workspace, API keys, and other pref
 ```yaml
 storage:
     type: oci
-    bucket: ScryDatasets
+    bucket: MLOpsDatasets
 
 mongodb:
     database: llm_test_db
@@ -50,7 +50,7 @@ oci:
 ### Downloading Datasets Created on IoT-Sense Platform
 ```python
 import pandas as pd
-from ScryDatasets.dataset_manager import DatasetManager
+from MLOpsDatasets.dataset_manager import DatasetManager
 
 # Initialize DatasetManager
 manager = DatasetManager()

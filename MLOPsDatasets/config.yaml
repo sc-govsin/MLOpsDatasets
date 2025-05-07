@@ -1,7 +1,7 @@
 
 storage:
   type: oci
-  bucket: ScryDatasets
+  bucket: MLOpsDatasets
 
 mongodb:
   database: llm_test_db

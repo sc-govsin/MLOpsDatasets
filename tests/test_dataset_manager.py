@@ -3,12 +3,12 @@ from unittest.mock import patch
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from ScryDatasets.dataset_manager import DatasetManager
+from MLOpsDatasets.dataset_manager import DatasetManager
 
 class TestDatasetManager(unittest.TestCase):
 
-    @patch('ScryDatasets.dataset_manager.MongoClient')
-    @patch('ScryDatasets.dataset_manager.oci.object_storage.ObjectStorageClient')
+    @patch('MLOpsDatasets.dataset_manager.MongoClient')
+    @patch('MLOpsDatasets.dataset_manager.oci.object_storage.ObjectStorageClient')
     def setUp(self, MockOCIClient, MockMongoClient):
         self.mock_oci_client = MockOCIClient.return_value
         self.mock_mongo_client = MockMongoClient.return_value

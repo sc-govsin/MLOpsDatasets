@@ -6,7 +6,7 @@ def read_requirements():
         return f.read().splitlines()
 
 setup(
-    name="ScryDatasets",
+    name="MLOpsDatasets",
     version="0.1.0",
     packages=find_packages(),
     install_requires=read_requirements(),  # Use requirements.txt
@@ -15,7 +15,7 @@ setup(
     description="A Python library to download datasets created with Scry.",
     long_description=open("README.MD", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/sc-govsin/ScryDatasets",
+    url="https://github.com/sc-govsin/MLOpsDatasets",
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",

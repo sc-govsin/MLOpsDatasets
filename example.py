@@ -1,5 +1,5 @@
 """
-This script demonstrates the usage of the ScryDatasets library to manage datasets.
+This script demonstrates the usage of the MLOpsDatasets library to manage datasets.
 The script performs the following operations:
 1. Creates a sample DataFrame.
 2. Saves the DataFrame to a CSV file (commented out).
@@ -11,11 +11,11 @@ The script performs the following operations:
 8. Deletes a user-uploaded dataset.
 Dependencies:
 - pandas
-- ScryDatasets
+- MLOpsDatasets
 Note: Some methods used in this script are deprecated.
 """
 import pandas as pd
-from ScryDatasets.dataset_manager import DatasetManager
+from MLOpsDatasets.dataset_manager import DatasetManager
 
 # Create a sample DataFrame
 data = {
