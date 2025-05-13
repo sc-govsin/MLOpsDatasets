@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 or 
 ```
-pip install git+https://github.com/sc-govsin/MLOpsDatasets.git@v1.0.3
+pip install git+https://github.com/sc-govsin/MLOpsDatasets.git@v1.1.3
 ```
 ## Configuration
 
