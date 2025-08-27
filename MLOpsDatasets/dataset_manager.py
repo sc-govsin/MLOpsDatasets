@@ -224,7 +224,7 @@ class DatasetManager:
 
     def download(self, dataset_name: str, output_path: Optional[str] = None) -> None:
         try:
-            obj = self.oci_client.get_object(self.oci_client.get_namespace().data,self.bucket_name, "/"+dataset_name)
+            obj = self.oci_client.get_object(self.oci_client.get_namespace().data,self.bucket_name, dataset_name)
             if output_path is None:
                 output_path = Path('/tmp') / '.datasetmanager' / 'downloads' / dataset_name
             else:
