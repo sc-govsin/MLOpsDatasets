@@ -11,10 +11,14 @@ git clone <repository-url>
 cd scry_dataset
 pip install -r requirements.txt
 ```
-or 
+### Install latest release automatically
+You can install the latest tagged release using:
+
+```bash
+LATEST_TAG=$(curl -s https://api.github.com/repos/sc-govsin/MLOpsDatasets/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+pip install git+https://github.com/sc-govsin/MLOpsDatasets.git@$LATEST_TAG
 ```
-pip install git+https://github.com/sc-govsin/MLOpsDatasets.git@v1.1.3
-```
+
 ## Configuration
 
 MLOpsDatasets can be configured using a YAML file. The library will look for the configuration file in the following locations, in order:

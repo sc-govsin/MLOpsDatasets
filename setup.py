@@ -1,15 +1,15 @@
 from setuptools import setup, find_packages
 
-# Read requirements.txt
 def read_requirements():
-    with open("./requirements.txt",encoding="utf-8") as f:
+    with open("./requirements.txt", encoding="utf-8") as f:
         return f.read().splitlines()
 
 setup(
     name="MLOpsDatasets",
-    version="0.1.0",
+    use_scm_version=True,  # <-- version comes from git tags
+    setup_requires=["setuptools-scm"],
     packages=find_packages(),
-    install_requires=read_requirements(),  # Use requirements.txt
+    install_requires=read_requirements(),
     author="Govind Singh",
     author_email="govind.singh@scryai.com",
     description="A Python library to download datasets created with Scry.",
